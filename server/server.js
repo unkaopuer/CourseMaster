@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const path = require('path')
 
 const PORT = process.env.PORT
-const CURRENT_WORKING_DIR = process.pwd()
+const CURRENT_WORKING_DIR = process.cwd()
 console.log(process.env.NODE_ENV)
 
 connectDB()
