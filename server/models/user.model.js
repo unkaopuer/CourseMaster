@@ -21,13 +21,15 @@ const userSchema = new mongoose.Schema({
         required:'Password is required'
     },
     salt:String,
+
     updated: Date,
+
     created:{
         type:Date,
         default:Date.now
     },
     educator:{
-        type:boolean,
+        type:Boolean,
         default:false
     }
 })

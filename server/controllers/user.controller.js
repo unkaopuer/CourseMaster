@@ -82,7 +82,7 @@ const remove = async(req,res) =>{
 }
 /*check if the user is an educator */
 const isEducator = (req, res, next) => {
-    const isEducator = req.profile && req.profile.educator
+    const isEducator = req.profile   &&   req.profile.educator
     if(!isEducator){
         return res.status(403).json({
             error:"User is not an educator"
