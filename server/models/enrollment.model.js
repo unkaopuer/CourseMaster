@@ -20,9 +20,9 @@ const enrollmentSchema = new mongoose.Schema({
             type:mongoose.Schema.ObjectId,
             ref: 'Lesson'
         },
-        complete: Boolean
+        complete: Boolean /* The completion status of the lesson */
     }],
-    completed: Date
+    completed: Boolean  /* The completion status of the entire course */
 })
 
 module.exports = mongoose.model('Enrollment',enrollmentSchema)

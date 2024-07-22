@@ -1,5 +1,5 @@
-const extend = require('lodash/extend')
 const Course = require('../models/course.model')
+const extend = require('lodash/extend')
 const fs = require('fs')
 const errorHandler = require('../helpers/dbErrorHandler')
 const defaultImage = require('../../client/assets/images/default.png')
@@ -147,7 +147,7 @@ const listPublished = (req,res) =>{
             })
         }
         res.json(courses)
-    }).populate('instructor','_id name')
+    }).select('-image').populate('instructor','_id name')
 }
 
 const photo = (req,res,next) =>{
