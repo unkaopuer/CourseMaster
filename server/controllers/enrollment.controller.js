@@ -59,7 +59,7 @@ const complete = async(req,res) =>{
 
     try{
         let enrollment = await Enrollment.updateOne(
-            {'lessonStatus._id':req.body.lessonStatusId},
+            {'lessonStatus._id':lessonStatusId},
             {'$set':updatedData})
         res.json(enrollment)
 
@@ -83,7 +83,7 @@ const remove = async(req,res)=>{
 }
 
 const isStudent =(req,res,next)=>{
-    const isStudent = req.auth   &&   req.auth._id === req.enrollment.student_id
+    const isStudent = req.auth   &&  req.enrollment.student._id.equals(req.auth._id)
     if(!isStudent){
         return res.status(403).json({
             error:"User is not enrolled"
@@ -94,7 +94,8 @@ const isStudent =(req,res,next)=>{
 
 const listEnrolled = async(req,res) =>{
     try{
-        let enrollments = await Enrollment.find({student:req.auth._id}).sort({'completed':1}).populate('course','_id name category')
+        let enrollments = await Enrollment.find({student:req.auth._id})
+        .sort({'completed':1}).populate('course','_id name category')
         res.json(enrollments)
     } catch(err){
         return res.status(400).json({
