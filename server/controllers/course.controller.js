@@ -2,7 +2,6 @@ const Course = require('../models/course.model')
 const extend = require('lodash/extend')
 const fs = require('fs')
 const errorHandler = require('../helpers/dbErrorHandler')
-const defaultImage = require('../../client/assets/images/default.png')
 const formidable = require('formidable')
 const path = require('path')
 

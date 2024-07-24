@@ -3,6 +3,9 @@ const authCtrl = require('../controllers/auth.controller')
 const router = express.Router()
 
 router.route('/auth/sighin')
-    .post(authCtrl)
+    .post(authCtrl.signin)
 router.route('/auth/signout')
-    .get()
+    .post(authCtrl.signout)
+
+
+module.exports = router

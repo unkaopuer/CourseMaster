@@ -1,6 +1,6 @@
 const User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
-const expressJwt = require('express-jwt')
+const {expressjwt: expressJwt} = require('express-jwt')
 require('dotenv').config()
 
 const signin = async (req, res) =>{
@@ -18,29 +18,21 @@ const signin = async (req, res) =>{
                 error:"Email and password don't match."
             })
         }
+
         const token = jwt.sign(
             {_id:user._id},
             process.env.ACCESS_TOKEN_SECRET,
             {expiresIn: '1h'}
         )
         
-        const refreshToken = jwt.sign(
-            {_id:user._id},
-            process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: '7d' }
-        )
+
         res.cookie('t',token,{
             httpOnly:true,
             secure: process.env.NODE_ENV === 'production',
             expires: new Date(Date.now() + 3600000) 
         })
 
-        res.cookie('refreshToken', refreshToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            expires: new Date(Date.now() + 7 * 24 * 3600000) 
-          });
-        
+
         return res.json({
             token,
             user:{
@@ -58,9 +50,9 @@ const signin = async (req, res) =>{
 }
 
 
+
 const signout = (req,res) =>{
     res.clearCookie("t")
-    res.clearCookie("refreshToken")
     return res.status(200).json({
         message:"signed out"
     })

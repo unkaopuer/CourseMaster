@@ -7,8 +7,12 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cookieParser =require('cookie-parser')
 const compress = require('compression')
+const helmet = require('helmet')
 const cors = require('cors')
-
+const userRoutes = require('./routes/user.routes')
+const authRoutes = require('./routes/auth.routes')
+const enrollmentRoutes = require('./routes/enrollment.routes')
+const courseRoutes = require('./routes/course.routes')
 
 const PORT = process.env.PORT
 const CURRENT_WORKING_DIR = process.cwd()
@@ -24,7 +28,7 @@ app.use(compress())
 app.use(helmet())
 app.use(cors())
 
-app.use('/dist',express.static(path.join(CURRENT_WORKING_DIR,'dist')))
+app.use('/assets',express.static(path.join(CURRENT_WORKING_DIR,'client/assets')))
 
 app.use('/', userRoutes)
 app.use('/', authRoutes)
