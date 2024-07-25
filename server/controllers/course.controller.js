@@ -131,7 +131,7 @@ const isInstructor = (req,res,next) =>{
 const listByInstructor = async (req,res) => {
    try {
     let courses = await Course.find({instructor: req.profile._id})
-    .populate('instructor','_id username').exec()
+    .select('-image').populate('instructor','_id username').exec()
     res.json(courses)
    } catch(err){
         return res.status(400).json({
