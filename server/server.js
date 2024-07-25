@@ -28,7 +28,7 @@ app.use(compress())
 app.use(helmet())
 app.use(cors())
 
-app.use('/assets',express.static(path.join(CURRENT_WORKING_DIR,'client/assets')))
+app.use('/assets',express.static(path.join(CURRENT_WORKING_DIR,'server','assets')))
 
 app.use('/', userRoutes)
 app.use('/', authRoutes)
