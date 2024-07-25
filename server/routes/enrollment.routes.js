@@ -11,7 +11,7 @@ router.route('/api/enrollment/new/:courseId')
 .post(authCtrl.requireSignin,enrollmentCtrl.findEnrollment,enrollmentCtrl.create)
 
 router.route('/api/enrollment/stats/:courseId')
-.get(authCtrl.requireSignin,enrollmentCtrl.enrollmentStats)
+.get(enrollmentCtrl.enrollmentStats)
 
 router.route('/api/enrollment/complete/:enrollmentId')
 .put(authCtrl.requireSignin,enrollmentCtrl.isStudent,enrollmentCtrl.complete)
