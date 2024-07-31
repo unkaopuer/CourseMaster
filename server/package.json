@@ -1,5 +1,5 @@
 {
-  "name": "coursemaster_mern",
+  "name": "coursemaster_mern_server",
   "version": "1.0.0",
   "description": "A MERN stack based online course management",
   "main": "server.js",
