@@ -29,7 +29,7 @@ const signout = async() =>{
         }
         return await response.json()
     } catch(err) {
-        console.err(`Error during signout: ${err.message}`)
+        console.error(`Error during signout: ${err.message}`)
         throw err
     }
 }
